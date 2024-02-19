@@ -52,7 +52,7 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">Academic Project Page</h1>
+            <h1 class="title is-1 publication-title">AVA: Automated Viewability Analysis for Ureteroscopic Intrarenal Surgery</h1>
             <div class="is-size-5 publication-authors">
               <!-- Paper authors -->
               <span class="author-block">
@@ -129,6 +129,9 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
+      <center>
+        <img src="static/images/ava_system.png" alt="AVA Overview" class="center-image"/>
+      </center>
       <h2 class="subtitle has-text-centered">
         Given a CT Urogram, AVA segments the renal collecting system and predicts which regions are viewable. It is the first of its kind in urology.
       </h2>
@@ -162,21 +165,21 @@
       <div id="results-carousel" class="carousel results-carousel">
        <div class="item">
         <!-- Your image here -->
-        <img src="static/images/viewabilitycameragen2.png" alt="MY ALT TEXT"/>
+        <img src="static/images/viewabilitycameragen2.png" alt="Camera Simulation"/>
         <h2 class="subtitle has-text-centered">
           viewability computation. The camera is placed along the ureter, and a cone (blue) originates at the camera. The surface mesh cells intersecting with the  cone are marked in yellow. Teal triangles mark the boundary between seen and unseen.
         </h2>
       </div>
       <div class="item">
         <!-- Your image here -->
-        <img src="static/images/viewabilityphantom1.png" alt="MY ALT TEXT"/>
+        <img src="static/images/viewabilityphantom1.png" alt="Global Flexion"/>
         <h2 class="subtitle has-text-centered">
           Marking fURS movement range in a 3D printed PLA phantom of the renal collecting system. Red dots show the farthest bound of tip flexion within each branch. The global flexion of the scope is shown by bending to the upper-most circle.
         </h2>
       </div>
       <div class="item">
         <!-- Your image here -->
-        <img src="static/images/viewabilityphantom2.png" alt="MY ALT TEXT"/>
+        <img src="static/images/viewabilityphantom2.png" alt="Local Flexion"/>
         <h2 class="subtitle has-text-centered">
           Marking fURS movement range in a 3D printed PLA phantom of the renal collecting system. Red dots show the farthest bound of tip flexion within each branch. The local flexion ability of the scope in the upper pole calyx.
        </h2>
@@ -187,6 +190,51 @@
 </div>
 </section>
 <!-- End image carousel -->
+
+<section class="section is-small">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full">
+        <div class="content">
+          <h2 class="title is-3">Viewability Study</h2>
+          <center>
+          <img src="static/images/expertlabels.png" alt="Expert Labels" class="center-image"/>
+          </center>
+          <div class="level-set has-text-justified">
+            <p>
+              We evaluated our system by tasking an experienced surgeon with watching their endoscopy recordings and manually marking on the extracted surface mesh which regions were not visuzalized. These points are delineated with the red dots.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section hero is-small is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full">
+        <div class="content">
+          <h2 class="title is-3">Predictions</h2>
+          <center>
+          <img src="static/images/predictions.png" alt="AVA Predictions" class="center-image blend-img-background"/>
+          </center>
+          <div class="level-set has-text-justified">
+            <p>
+              All rendering and viewability calculations are done through the Visualization ToolKit (VTK).
+
+              Beginning from the closest skeleton point to this ureter entry point, we construct a breadth-first search tree of the directed skeleton edges. At each edge, the angle from the previous edge is considered. If it exceeds the global flexion angle, then that edge and its successors are no longer considered. The result of this is an ordered traversal tree representing everywhere the endoscope can travel along the skeleton.
+              
+              The tree is traversed edge by edge inward from the ureter. Along each edge, camera positions are sampled at a constant step size. Camera directions are then generated to be evenly distributed along a spherical sector using a Fibonacci lattice. The sector size is determined by the local flexion angle. Along each camera direction, a cone is then placed to represent the camera view with the scope tip lying on the skeleton edge. The cone angle is determined by the camera FOV determined from the scope. Finally, the surface mesh is intersected with each cone and the overlapping VTK cells are marked as ``seen''. 
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 
 
