@@ -223,9 +223,11 @@
           <div class="level-set has-text-justified">
             <p>
               All rendering and viewability calculations are done through the Visualization ToolKit (VTK).
-
+            </p>
+            <p>
               Beginning from the closest skeleton point to this ureter entry point, we construct a breadth-first search tree of the directed skeleton edges. At each edge, the angle from the previous edge is considered. If it exceeds the global flexion angle, then that edge and its successors are no longer considered. The result of this is an ordered traversal tree representing everywhere the endoscope can travel along the skeleton.
-              
+            </p>
+            <p>
               The tree is traversed edge by edge inward from the ureter. Along each edge, camera positions are sampled at a constant step size. Camera directions are then generated to be evenly distributed along a spherical sector using a Fibonacci lattice. The sector size is determined by the local flexion angle. Along each camera direction, a cone is then placed to represent the camera view with the scope tip lying on the skeleton edge. The cone angle is determined by the camera FOV determined from the scope. Finally, the surface mesh is intersected with each cone and the overlapping VTK cells are marked as ``seen''. 
             </p>
           </div>
